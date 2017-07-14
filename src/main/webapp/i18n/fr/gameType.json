@@ -1,0 +1,10 @@
+{
+    "scorekeeperApp": {
+        "GameType" : {
+            "null": "",
+            "CARD": "CARD",
+            "DICE": "DICE",
+            "FREEFORM": "FREEFORM"
+        }
+    }
+}

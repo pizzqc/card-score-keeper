@@ -40,6 +40,10 @@ public class CacheConfiguration {
             cm.createCache(com.pizz.scorekeeper.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.pizz.scorekeeper.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.pizz.scorekeeper.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.pizz.scorekeeper.domain.Player.class.getName(), jcacheConfiguration);
+            cm.createCache(com.pizz.scorekeeper.domain.Game.class.getName(), jcacheConfiguration);
+            cm.createCache(com.pizz.scorekeeper.domain.GameSession.class.getName(), jcacheConfiguration);
+            cm.createCache(com.pizz.scorekeeper.domain.GameSession.class.getName() + ".players", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

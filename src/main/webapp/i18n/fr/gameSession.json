@@ -1,0 +1,25 @@
+{
+    "scorekeeperApp": {
+        "gameSession" : {
+            "home": {
+                "title": "GameSessions",
+                "createLabel": "Créer un nouveau Game Session",
+                "createOrEditLabel": "Créer ou éditer un Game Session"
+            },
+            "created": "Un nouveau Game Session a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Game Session avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Game Session avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Game Session {{ id }} ?"
+            },
+            "detail": {
+                "title": "Game Session"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "gameType": "Game Type",
+            "game": "Game",
+            "player": "Player"
+        }
+    }
+}

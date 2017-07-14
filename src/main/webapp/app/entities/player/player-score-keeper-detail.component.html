@@ -1,0 +1,37 @@
+
+<div *ngIf="player">
+    <h2><span jhiTranslate="scorekeeperApp.player.detail.title">Player</span> {{player.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="scorekeeperApp.player.firstName">First Name</span></dt>
+        <dd>
+            <span>{{player.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="scorekeeperApp.player.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{player.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="scorekeeperApp.player.email">Email</span></dt>
+        <dd>
+            <span>{{player.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="scorekeeperApp.player.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{player.phoneNumber}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'player-score-keeper/'+ player.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

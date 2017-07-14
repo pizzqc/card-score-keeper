@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span jhiTranslate="scorekeeperApp.gameSession.home.title">Game Sessions</span>
+        <button class="btn btn-primary float-right create-game-session-score-keeper" [routerLink]="['/', { outlets: { popup: ['game-session-score-keeper-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="scorekeeperApp.gameSession.home.createLabel">
+            Create new Game Session
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="gameSessions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startDate"><span jhiTranslate="scorekeeperApp.gameSession.startDate">Start Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endDate"><span jhiTranslate="scorekeeperApp.gameSession.endDate">End Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gameType"><span jhiTranslate="scorekeeperApp.gameSession.gameType">Game Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gameId"><span jhiTranslate="scorekeeperApp.gameSession.game">Game</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="playerId"><span jhiTranslate="scorekeeperApp.gameSession.player">Player</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gameSession of gameSessions ;trackBy: trackId">
+                <td><a [routerLink]="['../game-session-score-keeper', gameSession.id ]">{{gameSession.id}}</a></td>
+                <td>{{gameSession.startDate | date:'medium'}}</td>
+                <td>{{gameSession.endDate | date:'medium'}}</td>
+                <td jhiTranslate="{{'scorekeeperApp.GameType.' + gameSession.gameType}}">{{gameSession.gameType}}</td>
+                <td>
+                    <div *ngIf="gameSession.gameId">
+                        <a [routerLink]="['../game-score-keeper', gameSession.gameId  ]" >{{gameSession.gameId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="gameSession.playerId">
+                        <a [routerLink]="['../player-score-keeper', gameSession.playerId  ]" >{{gameSession.playerId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../game-session-score-keeper', gameSession.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game-session-score-keeper/'+ gameSession.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'game-session-score-keeper/'+ gameSession.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="gameSessions && gameSessions.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

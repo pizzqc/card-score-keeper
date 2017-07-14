@@ -1,0 +1,39 @@
+entity Player {
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String
+}
+
+entity Game {
+	gameName String // Queen of Hearths, 9, etc.
+}
+
+entity GameSession {
+	startDate ZonedDateTime,
+	endDate ZonedDateTime,
+    gameType GameType
+}
+
+enum GameType {
+    CARD, DICE, FREEFORM
+}
+
+relationship OneToOne {
+	GameSession{game} to Game
+}
+
+relationship ManyToOne {
+	GameSession{player} to Player
+}
+
+// Set pagination options
+paginate Game, Player with infinite-scroll
+paginate GameSession with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl // except Employee, Job
+// Set an angular suffix
+angularSuffix * with sk
